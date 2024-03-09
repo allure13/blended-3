@@ -1,6 +1,29 @@
 import { Container, Heading, Section } from 'components';
+import { useEffect, useState } from 'react';
+import { getCountries } from 'service/countryApi';
 
-export const Home = () => {
+const Home = () => {
+  const [countries, setCountries] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const data = await getCountries();
+        setCountries(data);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  console.log(countries, isLoading, error);
+
   return (
     <Section>
       <Container>
@@ -9,3 +32,4 @@ export const Home = () => {
     </Section>
   );
 };
+export default Home;
