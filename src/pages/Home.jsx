@@ -1,4 +1,4 @@
-import { Container, Heading, Section } from 'components';
+import { Container, CountryList, Heading, Loader, Section } from 'components';
 import { useEffect, useState } from 'react';
 import { getCountries } from 'service/countryApi';
 
@@ -22,12 +22,12 @@ const Home = () => {
     fetchData();
   }, []);
 
-  console.log(countries, isLoading, error);
-
   return (
     <Section>
       <Container>
-        <Heading title="Home" bottom />
+        {isLoading && <Loader />}
+        {error && <Heading title="Something went wrong. Try reload" bottom />}
+        {countries.length > 0 && <CountryList countries={countries} />}
       </Container>
     </Section>
   );
