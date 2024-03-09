@@ -45,7 +45,7 @@ import { Heading } from 'components';
 
 Для створення сітки використовуй компоненти `<Grid>` та `<GridItem>`\
 всереденікомпонента `CountryList`\
-Пиклад розмітки однієї li
+Приклад розмітки однієї li
 
 ```
  <GridItem >
